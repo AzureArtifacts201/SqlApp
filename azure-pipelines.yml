@@ -30,22 +30,5 @@ steps:
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'webapp-artifact'
+    ArtifactName: 'sqlApp'
     
-- task: DotNetCoreCLI@2
-  inputs:
-    command: restore
-    projects: '**/*.csproj'
-    
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: '**/WebTestProject.csproj'
-    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./MyCoverage/'
-    publishTestResults: true
-
-- task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage Resultes'
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(Build.SourcesDirectory)/**/MyCoverage/coverage.cobertura.xml'
