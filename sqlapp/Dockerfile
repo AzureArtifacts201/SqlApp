@@ -2,7 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-COPY ..
+COPY . .
 EXPOSE 80
 ENTRYPOINT ["dotnet", "sqlapp.dll"]
 
